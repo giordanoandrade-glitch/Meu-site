@@ -1,0 +1,661 @@
+<!doctype html>
+<html lang="pt-BR" class="h-full" style="scroll-behavior:smooth;">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="Content-Security-Policy" content="default-src https:; script-src 'unsafe-inline' https:; style-src 'unsafe-inline' https:; img-src https: data:; frame-src 'self' https:; font-src https:; connect-src https:;">
+  <title>Patos Casamentos</title>
+  <script src="https://cdn.tailwindcss.com/3.4.17"></script>
+  <script src="https://cdn.jsdelivr.net/npm/lucide@0.263.0/dist/umd/lucide.min.js"></script>
+  <script src="/_sdk/element_sdk.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&amp;family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&amp;family=Montserrat:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet">
+  <script>
+tailwind.config = {
+  theme: {
+    extend: {
+      colors: {
+        gold: { 50:'#fdf9ef', 100:'#f9f0d4', 200:'#f2dfa5', 300:'#e9c96e', 400:'#e2b63f', 500:'#c9982a', 600:'#a47720', 700:'#7d591c', 800:'#6a4a1e', 900:'#5a3f1e' },
+        wine: { 500:'#8B1A2B', 600:'#731623', 700:'#5c111c' }
+      }
+    }
+  }
+}
+</script>
+  <style>
+  html, body { height: 100%; margin: 0; }
+  body { font-family: 'Montserrat', sans-serif; }
+  .font-display { font-family: 'Playfair Display', serif; }
+  .font-elegant { font-family: 'Cormorant Garamond', serif; }
+
+  .gold-gradient { background: linear-gradient(135deg, #e2b63f 0%, #f2dfa5 50%, #e2b63f 100%); }
+  .gold-text { background: linear-gradient(135deg, #c9982a, #e9c96e, #c9982a); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+  .gold-border { border-image: linear-gradient(135deg, #c9982a, #f2dfa5, #c9982a) 1; }
+
+  .hero-bg {
+    background: linear-gradient(165deg, #0a0a0a 0%, #1a1209 40%, #0a0a0a 100%);
+    position: relative; overflow: hidden;
+  }
+  .hero-bg::before {
+    content: ''; position: absolute; inset: 0;
+    background: radial-gradient(ellipse at 50% 0%, rgba(201,152,42,0.08) 0%, transparent 60%),
+                radial-gradient(ellipse at 80% 80%, rgba(201,152,42,0.04) 0%, transparent 50%);
+  }
+  .hero-bg::after {
+    content: ''; position: absolute; inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23c9982a' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    opacity: 0.5;
+  }
+
+  .card-shine { position: relative; overflow: hidden; }
+  .card-shine::before {
+    content: ''; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%;
+    background: linear-gradient(135deg, transparent 40%, rgba(201,152,42,0.03) 50%, transparent 60%);
+    transition: all 0.6s ease;
+  }
+  .card-shine:hover::before { transform: translateX(20%) translateY(20%); }
+
+  .pkg-card {
+    background: #fff; border: 1px solid #f2dfa5; border-radius: 16px;
+    transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+    position: relative;
+  }
+  .pkg-card:hover { transform: translateY(-6px); box-shadow: 0 20px 60px rgba(201,152,42,0.15); }
+  .pkg-card.featured { border: 2px solid #c9982a; }
+  .pkg-card.featured::before {
+    content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px;
+    background: linear-gradient(90deg, #c9982a, #f2dfa5, #c9982a); border-radius: 16px 16px 0 0;
+  }
+
+  .btn-gold {
+    background: linear-gradient(135deg, #c9982a, #e2b63f);
+    color: #fff; font-weight: 600; border: none; cursor: pointer;
+    transition: all 0.3s ease; position: relative; overflow: hidden;
+  }
+  .btn-gold:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(201,152,42,0.4); }
+  .btn-gold::after {
+    content: ''; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%;
+    background: linear-gradient(135deg, transparent 40%, rgba(255,255,255,0.15) 50%, transparent 60%);
+    transition: transform 0.5s ease;
+  }
+  .btn-gold:hover::after { transform: translateX(30%) translateY(30%); }
+
+  .btn-red {
+    background: linear-gradient(135deg, #8B1A2B, #a52a3a);
+    color: #fff; font-weight: 600; border: none; cursor: pointer;
+    transition: all 0.3s ease;
+  }
+  .btn-red:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(139,26,43,0.35); }
+
+  .nav-link { position: relative; color: #c9982a; text-decoration: none; transition: color 0.3s; }
+  .nav-link::after {
+    content: ''; position: absolute; bottom: -2px; left: 0; width: 0; height: 1px;
+    background: #c9982a; transition: width 0.3s ease;
+  }
+  .nav-link:hover::after { width: 100%; }
+
+  .divider-gold {
+    height: 1px; border: none;
+    background: linear-gradient(90deg, transparent, #e2b63f, transparent);
+    margin: 2rem 0;
+  }
+
+  .video-thumb {
+    border-radius: 12px; overflow: hidden; position: relative; cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    aspect-ratio: 9/16; background: #1a1209; max-width: 140px;
+  }
+  .video-thumb:hover { transform: scale(1.05); box-shadow: 0 8px 30px rgba(201,152,42,0.2); }
+  .video-thumb .play-icon {
+    position: absolute; inset: 0; display: flex; align-items: center; justify-content: center;
+    background: rgba(0,0,0,0.3); transition: background 0.3s;
+  }
+  .video-thumb:hover .play-icon { background: rgba(0,0,0,0.15); }
+
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+  .anim-fade { animation: fadeUp 0.8s ease forwards; opacity: 0; }
+  .anim-d1 { animation-delay: 0.1s; }
+  .anim-d2 { animation-delay: 0.2s; }
+  .anim-d3 { animation-delay: 0.3s; }
+  .anim-d4 { animation-delay: 0.4s; }
+  .anim-d5 { animation-delay: 0.5s; }
+
+  .section-dark { background: linear-gradient(165deg, #0a0a0a 0%, #14100a 50%, #0a0a0a 100%); }
+
+  .combo-badge {
+    background: linear-gradient(135deg, #8B1A2B, #a52a3a);
+    color: #fff; font-size: 0.7rem; font-weight: 700; padding: 3px 10px;
+    border-radius: 20px; text-transform: uppercase; letter-spacing: 1px;
+  }
+
+  .floating-cta {
+    position: fixed; bottom: 20px; right: 20px; z-index: 50;
+    animation: pulse-glow 2s infinite;
+  }
+  @keyframes pulse-glow {
+    0%, 100% { box-shadow: 0 4px 20px rgba(139,26,43,0.4); }
+    50% { box-shadow: 0 4px 40px rgba(139,26,43,0.7); }
+  }
+
+  .price-strike { text-decoration: line-through; color: #999; font-size: 0.9rem; }
+  .price-highlight { color: #8B1A2B; font-weight: 700; }
+
+  .checklist-item { display: flex; align-items: flex-start; gap: 8px; margin-bottom: 8px; }
+  .checklist-icon { color: #c9982a; flex-shrink: 0; margin-top: 2px; }
+
+  .mobile-menu { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.95); z-index: 100; flex-direction: column; align-items: center; justify-content: center; gap: 2rem; }
+  .mobile-menu.active { display: flex; }
+</style>
+  <style>body { box-sizing: border-box; }
+  .video-modal { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.95); z-index: 200; align-items: center; justify-content: center; padding: 20px; }
+  .video-modal.active { display: flex; }
+  .video-modal-content { position: relative; width: 100%; max-width: 900px; aspect-ratio: 16/9; background: #000; border-radius: 12px; overflow: hidden; }
+  .video-modal-close { position: absolute; top: 16px; right: 16px; z-index: 201; background: rgba(0,0,0,0.7); color: #fff; border: none; cursor: pointer; width: 36px; height: 36px; border-radius: 50%; display: flex; align-items: center; justify-content: center; transition: all 0.3s; }
+  .video-modal-close:hover { background: rgba(0,0,0,0.9); transform: scale(1.1); }
+  .video-player { width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; background: #000; }
+  .video-player video { width: 100%; height: 100%; object-fit: contain; }
+  .video-player-controls { position: absolute; bottom: 0; left: 0; right: 0; height: 50px; background: linear-gradient(to top, rgba(0,0,0,0.8), transparent); display: flex; align-items: center; justify-content: space-between; padding: 0 16px; }
+  .video-player-btn { background: rgba(201,152,42,0.9); border: none; color: #fff; cursor: pointer; width: 36px; height: 36px; border-radius: 50%; display: flex; align-items: center; justify-content: center; transition: all 0.3s; }
+  .video-player-btn:hover { background: #c9982a; transform: scale(1.1); }
+  </style>
+  <script src="/_sdk/data_sdk.js" type="text/javascript"></script>
+ </head>
+ <body class="h-full bg-white text-gray-800 overflow-auto" id="app-body">
+  <!-- Video Modal -->
+  <div id="videoModal" class="video-modal">
+   <div class="video-modal-content">
+    <button onclick="closeVideoModal()" class="video-modal-close"><i data-lucide="x" style="width:24px;height:24px;"></i></button>
+    <div class="video-player" id="videoPlayer"></div>
+   </div>
+  </div><!-- Mobile Menu -->
+  <div id="mobileMenu" class="mobile-menu">
+   <button onclick="closeMobileMenu()" class="absolute top-6 right-6 text-gold-300"><i data-lucide="x" style="width:32px;height:32px;"></i></button> <a href="#cerimonia" onclick="closeMobileMenu()" class="text-gold-300 text-xl font-display tracking-wide hover:text-gold-200 transition-colors">Cerimônias</a> <a href="#recepcao" onclick="closeMobileMenu()" class="text-gold-300 text-xl font-display tracking-wide hover:text-gold-200 transition-colors">Recepção</a> <a href="#pista" onclick="closeMobileMenu()" class="text-gold-300 text-xl font-display tracking-wide hover:text-gold-200 transition-colors">Pista de Dança</a> <a href="#combos" onclick="closeMobileMenu()" class="text-gold-300 text-xl font-display tracking-wide hover:text-gold-200 transition-colors">Combos</a> <a href="#contato" onclick="closeMobileMenu()" class="btn-red px-8 py-3 rounded-full text-lg">Fale Conosco</a>
+  </div><!-- Sticky Nav -->
+  <nav id="stickyNav" class="fixed top-0 left-0 right-0 z-50 transition-all duration-500" style="background:transparent;">
+   <div class="max-w-6xl mx-auto px-4 py-4 flex items-center justify-between">
+    <div class="flex items-center gap-2">
+     <span class="font-display text-gold-400 text-xl font-bold tracking-wider">PATOS</span> <span class="font-elegant text-gold-300 text-sm italic">Casamentos</span>
+    </div>
+    <div class="hidden md:flex items-center gap-6">
+     <a href="#cerimonia" class="nav-link text-sm tracking-wide">Cerimônias</a> <a href="#recepcao" class="nav-link text-sm tracking-wide">Recepção</a> <a href="#pista" class="nav-link text-sm tracking-wide">Pista de Dança</a> <a href="#combos" class="nav-link text-sm tracking-wide">Combos</a> <a href="#contato" class="btn-red px-5 py-2 rounded-full text-sm">Fale Conosco</a>
+    </div><button onclick="openMobileMenu()" class="md:hidden text-gold-400"><i data-lucide="menu" style="width:28px;height:28px;"></i></button>
+   </div>
+  </nav><!-- Hero -->
+  <section class="hero-bg min-h-[600px] flex items-center relative" style="height:85%;">
+   <div class="max-w-5xl mx-auto px-6 text-center relative z-10 py-24">
+    <div class="anim-fade anim-d1 mb-4">
+     <span class="inline-block px-5 py-1 border border-gold-500 rounded-full text-gold-400 text-xs tracking-[3px] uppercase font-medium">Proposta Comercial 2026</span>
+    </div>
+    <h1 id="heroTitle" class="font-display text-4xl md:text-6xl lg:text-7xl font-bold text-white leading-tight anim-fade anim-d2 mb-6">Seu casamento merece<br><span class="gold-text">uma trilha inesquecível</span></h1>
+    <p id="heroSubtitle" class="font-elegant text-xl md:text-2xl text-gold-200 italic anim-fade anim-d3 mb-10 max-w-2xl mx-auto" style="opacity:0;">Música ao vivo, tecnologia LED e momentos que vão emocionar cada convidado</p>
+    <div class="flex flex-col sm:flex-row gap-4 justify-center anim-fade anim-d4" style="opacity:0;">
+     <a href="#cerimonia" class="btn-gold px-10 py-4 rounded-full text-lg tracking-wide inline-flex items-center justify-center gap-2"> <i data-lucide="music" style="width:20px;height:20px;"></i> Ver Pacotes </a> <a href="#contato" class="border-2 border-gold-500 text-gold-400 px-10 py-4 rounded-full text-lg tracking-wide hover:bg-gold-500 hover:text-white transition-all inline-flex items-center justify-center gap-2"> <i data-lucide="phone" style="width:20px;height:20px;"></i> <span id="ctaText">Solicite seu orçamento</span> </a>
+    </div>
+    <div class="mt-16 anim-fade anim-d5 flex items-center justify-center gap-8 text-gold-300 text-sm" style="opacity:0;">
+     <div class="flex items-center gap-2"><i data-lucide="star" style="width:16px;height:16px;"></i> +1000 eventos
+     </div>
+     <div class="flex items-center gap-2"><i data-lucide="heart" style="width:16px;height:16px;"></i> 100% satisfação
+     </div>
+     <div class="flex items-center gap-2"><i data-lucide="award" style="width:16px;height:16px;"></i> 10 anos
+     </div>
+    </div>
+   </div>
+   <div class="absolute bottom-0 left-0 right-0 h-24" style="background:linear-gradient(to top,#fff,transparent);"></div>
+  </section><!-- Quick Nav Cards -->
+  <section class="py-16 px-4 bg-white -mt-12 relative z-10">
+   <div class="max-w-5xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-4">
+    <a href="#cerimonia" class="pkg-card card-shine p-6 text-center group">
+     <div class="w-12 h-12 mx-auto mb-3 rounded-full bg-gold-50 flex items-center justify-center group-hover:bg-gold-100 transition-colors">
+      <i data-lucide="music" style="width:22px;height:22px;color:#c9982a;"></i>
+     </div><h3 class="font-display text-sm font-semibold text-gray-800">Cerimônias</h3><p class="text-xs text-gray-500 mt-1">A partir de R$ 400</p></a> <a href="#recepcao" class="pkg-card card-shine p-6 text-center group">
+     <div class="w-12 h-12 mx-auto mb-3 rounded-full bg-gold-50 flex items-center justify-center group-hover:bg-gold-100 transition-colors">
+      <i data-lucide="glass-water" style="width:22px;height:22px;color:#c9982a;"></i>
+     </div><h3 class="font-display text-sm font-semibold text-gray-800">Recepção</h3><p class="text-xs text-gray-500 mt-1">A partir de R$ 1.500</p></a> <a href="#pista" class="pkg-card card-shine p-6 text-center group">
+     <div class="w-12 h-12 mx-auto mb-3 rounded-full bg-gold-50 flex items-center justify-center group-hover:bg-gold-100 transition-colors">
+      <i data-lucide="zap" style="width:22px;height:22px;color:#c9982a;"></i>
+     </div><h3 class="font-display text-sm font-semibold text-gray-800">Pista de Dança</h3><p class="text-xs text-gray-500 mt-1">O mais vendido</p></a> <a href="#combos" class="pkg-card card-shine p-6 text-center group">
+     <div class="w-12 h-12 mx-auto mb-3 rounded-full bg-gold-50 flex items-center justify-center group-hover:bg-gold-100 transition-colors">
+      <i data-lucide="percent" style="width:22px;height:22px;color:#8B1A2B;"></i>
+     </div><h3 class="font-display text-sm font-semibold text-gray-800">Combos</h3><p class="text-xs text-gray-500 mt-1 text-wine-500 font-semibold">Com desconto</p></a>
+   </div>
+  </section><!-- PACOTE 1: Cerimônias -->
+  <section id="cerimonia" class="section-dark py-20 px-4">
+   <div class="max-w-5xl mx-auto">
+    <div class="text-center mb-14">
+     <span class="inline-block px-4 py-1 border border-gold-700 rounded-full text-gold-500 text-xs tracking-[2px] uppercase mb-4">Pacote 01</span>
+     <h2 class="font-display text-3xl md:text-5xl font-bold text-white mb-3">Essencial e <span class="gold-text">Intimista</span></h2>
+     <p class="font-elegant text-lg text-gold-300 italic max-w-xl mx-auto">Foco no necessário com qualidade — adicione um ou mais instrumentos</p>
+    </div>
+    <div class="grid md:grid-cols-2 gap-6 mb-12">
+     <!-- Card: Sonorização -->
+     <div class="bg-white/5 backdrop-blur border border-gold-800/50 rounded-2xl p-6 hover:border-gold-600/60 transition-all">
+      <div class="flex items-start justify-between mb-4">
+       <div class="flex items-center gap-3">
+        <div class="w-10 h-10 rounded-full bg-gold-500/10 flex items-center justify-center"><i data-lucide="speaker" style="width:18px;height:18px;color:#e2b63f;"></i>
+        </div>
+        <h3 class="font-display text-lg font-semibold text-white">Sonorização Cerimônia</h3>
+       </div><span class="gold-text font-bold text-xl">R$ 400</span>
+      </div>
+      <p class="text-gold-200/70 text-sm">DJ e projeto de sonorização inclusos. Base sonora perfeita para sua cerimônia.</p>
+     </div><!-- Card: Recepção Pré-Cerimônia -->
+     <div class="bg-white/5 backdrop-blur border border-gold-800/50 rounded-2xl p-6 hover:border-gold-600/60 transition-all">
+      <div class="flex items-start justify-between mb-4">
+       <div class="flex items-center gap-3">
+        <div class="w-10 h-10 rounded-full bg-gold-500/10 flex items-center justify-center"><i data-lucide="users" style="width:18px;height:18px;color:#e2b63f;"></i>
+        </div>
+        <h3 class="font-display text-lg font-semibold text-white">Recepção Pré-Cerimônia</h3>
+       </div><span class="gold-text font-bold text-xl">R$ 500<span class="text-xs text-gold-400/70">/inst.</span></span>
+      </div>
+      <p class="text-gold-200/70 text-sm">Violino, Sax+Flauta, Piano ou Violoncelo. Valor adicionado por cada instrumento.</p>
+     </div><!-- Card: Entrada Triunfal -->
+     <div class="bg-white/5 backdrop-blur border border-gold-800/50 rounded-2xl p-6 hover:border-gold-600/60 transition-all">
+      <div class="flex items-start justify-between mb-4">
+       <div class="flex items-center gap-3">
+        <div class="w-10 h-10 rounded-full bg-gold-500/10 flex items-center justify-center"><i data-lucide="crown" style="width:18px;height:18px;color:#e2b63f;"></i>
+        </div>
+        <h3 class="font-display text-lg font-semibold text-white">Entrada Triunfal da Noiva</h3>
+       </div><span class="gold-text font-bold text-xl">R$ 1.000<span class="text-xs text-gold-400/70">/inst.</span></span>
+      </div>
+      <p class="text-gold-200/70 text-sm">Trompete, Sax+Flauta, Voz, Piano ou Violino. Cerimônia completa disponível.</p>
+     </div><!-- Card: Cartório / Pedido -->
+     <div class="bg-white/5 backdrop-blur border border-gold-800/50 rounded-2xl p-6 hover:border-gold-600/60 transition-all">
+      <div class="flex items-start justify-between mb-4">
+       <div class="flex items-center gap-3">
+        <div class="w-10 h-10 rounded-full bg-gold-500/10 flex items-center justify-center"><i data-lucide="heart" style="width:18px;height:18px;color:#e2b63f;"></i>
+        </div>
+        <h3 class="font-display text-lg font-semibold text-white">Cartório / Pedido de Noivado</h3>
+       </div><span class="gold-text font-bold text-xl">R$ 600<span class="text-xs text-gold-400/70">/inst.</span></span>
+      </div>
+      <p class="text-gold-200/70 text-sm">Sax + Flauta, Violino, Violoncelo. Perfeito para momentos íntimos.</p>
+     </div>
+    </div><!-- Starting Price -->
+    <div class="text-center mb-10">
+     <p class="text-gold-400 text-sm uppercase tracking-widest mb-1">A partir de</p>
+     <p class="font-display text-5xl font-bold text-white">R$ <span class="gold-text">400</span></p>
+     <p class="text-gold-300/60 text-xs mt-2">+ instrumentos adicionais conforme sua escolha</p>
+    </div><!-- Videos Section -->
+    <div class="mb-8">
+     <h4 class="text-gold-400 text-sm uppercase tracking-widest text-center mb-6">Veja nossos momentos</h4>
+     <div class="flex gap-3 overflow-x-auto pb-4 justify-start md:justify-center" style="-webkit-overflow-scrolling:touch;">
+      <button onclick="openVideoModal('3jp5NlXmRtQ')" class="video-thumb flex-shrink-0" style="min-width:120px;background:none;border:none;padding:0;cursor:pointer;"> <img src="https://img.youtube.com/vi/3jp5NlXmRtQ/mqdefault.jpg" alt="Vídeo cerimônia" loading="lazy" class="w-full h-full object-cover" onerror="this.style.background='linear-gradient(135deg,#1a1209,#0a0a0a)';this.alt='Vídeo';">
+       <div class="play-icon"><i data-lucide="play" style="width:28px;height:28px;color:#e2b63f;"></i>
+       </div></button> <button onclick="openVideoModal('Bcyn0GFz2Pc')" class="video-thumb flex-shrink-0" style="min-width:120px;background:none;border:none;padding:0;cursor:pointer;"> <img src="https://img.youtube.com/vi/Bcyn0GFz2Pc/mqdefault.jpg" alt="Vídeo cerimônia" loading="lazy" class="w-full h-full object-cover" onerror="this.style.background='linear-gradient(135deg,#1a1209,#0a0a0a)';this.alt='Vídeo';">
+       <div class="play-icon"><i data-lucide="play" style="width:28px;height:28px;color:#e2b63f;"></i>
+       </div></button> <button onclick="openVideoModal('vkwTGKKHIbw')" class="video-thumb flex-shrink-0" style="min-width:120px;background:none;border:none;padding:0;cursor:pointer;"> <img src="https://img.youtube.com/vi/vkwTGKKHIbw/mqdefault.jpg" alt="Vídeo cerimônia" loading="lazy" class="w-full h-full object-cover" onerror="this.style.background='linear-gradient(135deg,#1a1209,#0a0a0a)';this.alt='Vídeo';">
+       <div class="play-icon"><i data-lucide="play" style="width:28px;height:28px;color:#e2b63f;"></i>
+       </div></button> <button onclick="openVideoModal('v5B9YlEODp4')" class="video-thumb flex-shrink-0" style="min-width:120px;background:none;border:none;padding:0;cursor:pointer;"> <img src="https://img.youtube.com/vi/v5B9YlEODp4/mqdefault.jpg" alt="Vídeo cerimônia" loading="lazy" class="w-full h-full object-cover" onerror="this.style.background='linear-gradient(135deg,#1a1209,#0a0a0a)';this.alt='Vídeo';">
+       <div class="play-icon"><i data-lucide="play" style="width:28px;height:28px;color:#e2b63f;"></i>
+       </div></button> <button onclick="openVideoModal('UdI1Kzh5ibw')" class="video-thumb flex-shrink-0" style="min-width:120px;background:none;border:none;padding:0;cursor:pointer;"> <img src="https://img.youtube.com/vi/UdI1Kzh5ibw/mqdefault.jpg" alt="Vídeo cerimônia" loading="lazy" class="w-full h-full object-cover" onerror="this.style.background='linear-gradient(135deg,#1a1209,#0a0a0a)';this.alt='Vídeo';">
+       <div class="play-icon"><i data-lucide="play" style="width:28px;height:28px;color:#e2b63f;"></i>
+       </div></button> <button onclick="openVideoModal('ibt16uHm17E')" class="video-thumb flex-shrink-0" style="min-width:120px;background:none;border:none;padding:0;cursor:pointer;"> <img src="https://img.youtube.com/vi/ibt16uHm17E/mqdefault.jpg" alt="Vídeo cerimônia" loading="lazy" class="w-full h-full object-cover" onerror="this.style.background='linear-gradient(135deg,#1a1209,#0a0a0a)';this.alt='Vídeo';">
+       <div class="play-icon"><i data-lucide="play" style="width:28px;height:28px;color:#e2b63f;"></i>
+       </div></button> <button onclick="openVideoModal('fUpH0wDl1ak')" class="video-thumb flex-shrink-0" style="min-width:120px;background:none;border:none;padding:0;cursor:pointer;"> <img src="https://img.youtube.com/vi/fUpH0wDl1ak/mqdefault.jpg" alt="Vídeo cerimônia" loading="lazy" class="w-full h-full object-cover" onerror="this.style.background='linear-gradient(135deg,#1a1209,#0a0a0a)';this.alt='Vídeo';">
+       <div class="play-icon"><i data-lucide="play" style="width:28px;height:28px;color:#e2b63f;"></i>
+       </div></button>
+     </div>
+    </div>
+    <div class="text-center">
+     <a href="#contato" class="btn-gold px-10 py-4 rounded-full text-base inline-flex items-center gap-2"> <i data-lucide="message-circle" style="width:18px;height:18px;"></i> Quero este pacote </a>
+    </div>
+   </div>
+  </section><!-- Divider -->
+  <div class="bg-white">
+   <hr class="divider-gold max-w-2xl mx-auto">
+  </div><!-- PACOTE 2: Recepção -->
+  <section id="recepcao" class="py-20 px-4 bg-white">
+   <div class="max-w-5xl mx-auto">
+    <div class="text-center mb-14">
+     <span class="inline-block px-4 py-1 border border-gold-300 rounded-full text-gold-600 text-xs tracking-[2px] uppercase mb-4">Pacote 02</span>
+     <h2 class="font-display text-3xl md:text-5xl font-bold text-gray-900 mb-3">Atmosfera de <span class="gold-text">Boas-Vindas</span></h2>
+     <p class="font-elegant text-lg text-gray-500 italic max-w-xl mx-auto">Receptivos, bôdas, aniversários e serenatas com elegância</p>
+    </div>
+    <div class="pkg-card max-w-3xl mx-auto p-8 md:p-10 mb-10">
+     <div class="grid md:grid-cols-2 gap-8">
+      <div>
+       <h3 class="font-display text-xl font-semibold text-gray-900 mb-6">O que está incluso</h3>
+       <div class="space-y-4">
+        <div class="checklist-item">
+         <i data-lucide="check-circle" class="checklist-icon" style="width:18px;height:18px;"></i>
+         <div><span class="text-sm font-medium text-gray-800">DJ com Sax+Flauta</span><br><span class="text-xs text-gray-500">Base inclusa</span>
+         </div>
+        </div>
+        <div class="checklist-item">
+         <i data-lucide="check-circle" class="checklist-icon" style="width:18px;height:18px;"></i>
+         <div><span class="text-sm font-medium text-gray-800">+ Violino ou Violoncelo</span><br><span class="text-xs text-gray-500">+R$ 600 cada</span>
+         </div>
+        </div>
+        <div class="checklist-item">
+         <i data-lucide="check-circle" class="checklist-icon" style="width:18px;height:18px;"></i> <span class="text-sm font-medium text-gray-800">Repertório para receptivos, bôdas, aniversários e serenatas</span>
+        </div>
+        <div class="checklist-item">
+         <i data-lucide="check-circle" class="checklist-icon" style="width:18px;height:18px;"></i> <span class="text-sm font-medium text-gray-800">Recepção dos convidados e atendimento mesa a mesa</span>
+        </div>
+        <div class="checklist-item">
+         <i data-lucide="check-circle" class="checklist-icon" style="width:18px;height:18px;"></i> <span class="text-sm font-medium text-gray-800">Entrada triunfal dos casados e/ou brinde com padrinhos</span>
+        </div>
+       </div>
+      </div>
+      <div class="flex flex-col items-center justify-center text-center bg-gold-50 rounded-2xl p-8">
+       <p class="text-gold-600 text-sm uppercase tracking-widest mb-2">Investimento</p>
+       <p class="font-display text-5xl font-bold text-gray-900">R$ <span class="gold-text">1.500</span></p>
+       <p class="text-xs text-gray-500 mt-2">+ instrumentos adicionais</p><a href="#contato" class="btn-gold px-8 py-3 rounded-full text-sm mt-6 inline-flex items-center gap-2"> <i data-lucide="message-circle" style="width:16px;height:16px;"></i> Quero este pacote </a>
+      </div>
+     </div>
+    </div><!-- Videos -->
+    <h4 class="text-gold-600 text-sm uppercase tracking-widest text-center mb-6">Veja a experiência</h4>
+    <div class="flex gap-3 overflow-x-auto pb-4 justify-start md:justify-center" style="-webkit-overflow-scrolling:touch;">
+     <button onclick="openVideoModal('UdGjfLJqnRs')" class="video-thumb flex-shrink-0" style="min-width:120px;background:none;border:none;padding:0;cursor:pointer;"> <img src="https://img.youtube.com/vi/UdGjfLJqnRs/mqdefault.jpg" alt="Vídeo recepção" loading="lazy" class="w-full h-full object-cover" onerror="this.style.background='#f2dfa5';this.alt='Vídeo';">
+      <div class="play-icon"><i data-lucide="play" style="width:28px;height:28px;color:#c9982a;"></i>
+      </div></button> <button onclick="openVideoModal('DvCD5Y_wIrY')" class="video-thumb flex-shrink-0" style="min-width:120px;background:none;border:none;padding:0;cursor:pointer;"> <img src="https://img.youtube.com/vi/DvCD5Y_wIrY/mqdefault.jpg" alt="Vídeo recepção" loading="lazy" class="w-full h-full object-cover" onerror="this.style.background='#f2dfa5';this.alt='Vídeo';">
+      <div class="play-icon"><i data-lucide="play" style="width:28px;height:28px;color:#c9982a;"></i>
+      </div></button> <button onclick="openVideoModal('6QjOv0MxPTo')" class="video-thumb flex-shrink-0" style="min-width:120px;background:none;border:none;padding:0;cursor:pointer;"> <img src="https://img.youtube.com/vi/6QjOv0MxPTo/mqdefault.jpg" alt="Vídeo recepção" loading="lazy" class="w-full h-full object-cover" onerror="this.style.background='#f2dfa5';this.alt='Vídeo';">
+      <div class="play-icon"><i data-lucide="play" style="width:28px;height:28px;color:#c9982a;"></i>
+      </div></button> <button onclick="openVideoModal('0rYeavaOFyc')" class="video-thumb flex-shrink-0" style="min-width:120px;background:none;border:none;padding:0;cursor:pointer;"> <img src="https://img.youtube.com/vi/0rYeavaOFyc/mqdefault.jpg" alt="Vídeo recepção" loading="lazy" class="w-full h-full object-cover" onerror="this.style.background='#f2dfa5';this.alt='Vídeo';">
+      <div class="play-icon"><i data-lucide="play" style="width:28px;height:28px;color:#c9982a;"></i>
+      </div></button> <button onclick="openVideoModal('LxNqpKKO8zE')" class="video-thumb flex-shrink-0" style="min-width:120px;background:none;border:none;padding:0;cursor:pointer;"> <img src="https://img.youtube.com/vi/LxNqpKKO8zE/mqdefault.jpg" alt="Vídeo recepção" loading="lazy" class="w-full h-full object-cover" onerror="this.style.background='#f2dfa5';this.alt='Vídeo';">
+      <div class="play-icon"><i data-lucide="play" style="width:28px;height:28px;color:#c9982a;"></i>
+      </div></button> <button onclick="openVideoModal('rWccBiFmjMc')" class="video-thumb flex-shrink-0" style="min-width:120px;background:none;border:none;padding:0;cursor:pointer;"> <img src="https://img.youtube.com/vi/rWccBiFmjMc/mqdefault.jpg" alt="Vídeo recepção" loading="lazy" class="w-full h-full object-cover" onerror="this.style.background='#f2dfa5';this.alt='Vídeo';">
+      <div class="play-icon"><i data-lucide="play" style="width:28px;height:28px;color:#c9982a;"></i>
+      </div></button> <button onclick="openVideoModal('h298TQcAq5U')" class="video-thumb flex-shrink-0" style="min-width:120px;background:none;border:none;padding:0;cursor:pointer;"> <img src="https://img.youtube.com/vi/h298TQcAq5U/mqdefault.jpg" alt="Vídeo recepção" loading="lazy" class="w-full h-full object-cover" onerror="this.style.background='#f2dfa5';this.alt='Vídeo';">
+      <div class="play-icon"><i data-lucide="play" style="width:28px;height:28px;color:#c9982a;"></i>
+      </div></button> <button onclick="openVideoModal('Xymkav2oppY')" class="video-thumb flex-shrink-0" style="min-width:120px;background:none;border:none;padding:0;cursor:pointer;"> <img src="https://img.youtube.com/vi/Xymkav2oppY/mqdefault.jpg" alt="Vídeo recepção" loading="lazy" class="w-full h-full object-cover" onerror="this.style.background='#f2dfa5';this.alt='Vídeo';">
+      <div class="play-icon"><i data-lucide="play" style="width:28px;height:28px;color:#c9982a;"></i>
+      </div></button> <button onclick="openVideoModal('chkqdbL0KgE')" class="video-thumb flex-shrink-0" style="min-width:120px;background:none;border:none;padding:0;cursor:pointer;"> <img src="https://img.youtube.com/vi/chkqdbL0KgE/mqdefault.jpg" alt="Vídeo recepção" loading="lazy" class="w-full h-full object-cover" onerror="this.style.background='#f2dfa5';this.alt='Vídeo';">
+      <div class="play-icon"><i data-lucide="play" style="width:28px;height:28px;color:#c9982a;"></i>
+      </div></button> <button onclick="openVideoModal('1QUTyFLBXO0')" class="video-thumb flex-shrink-0" style="min-width:120px;background:none;border:none;padding:0;cursor:pointer;"> <img src="https://img.youtube.com/vi/1QUTyFLBXO0/mqdefault.jpg" alt="Vídeo recepção" loading="lazy" class="w-full h-full object-cover" onerror="this.style.background='#f2dfa5';this.alt='Vídeo';">
+      <div class="play-icon"><i data-lucide="play" style="width:28px;height:28px;color:#c9982a;"></i>
+      </div></button> <button onclick="openVideoModal('j1IbkP0Zo3o')" class="video-thumb flex-shrink-0" style="min-width:120px;background:none;border:none;padding:0;cursor:pointer;"> <img src="https://img.youtube.com/vi/j1IbkP0Zo3o/mqdefault.jpg" alt="Vídeo recepção" loading="lazy" class="w-full h-full object-cover" onerror="this.style.background='#f2dfa5';this.alt='Vídeo';">
+      <div class="play-icon"><i data-lucide="play" style="width:28px;height:28px;color:#c9982a;"></i>
+      </div></button> <button onclick="openVideoModal('VbRfSTHSLSQ')" class="video-thumb flex-shrink-0" style="min-width:120px;background:none;border:none;padding:0;cursor:pointer;"> <img src="https://img.youtube.com/vi/VbRfSTHSLSQ/mqdefault.jpg" alt="Vídeo recepção" loading="lazy" class="w-full h-full object-cover" onerror="this.style.background='#f2dfa5';this.alt='Vídeo';">
+      <div class="play-icon"><i data-lucide="play" style="width:28px;height:28px;color:#c9982a;"></i>
+      </div></button> <button onclick="openVideoModal('PPODqdJh2gs')" class="video-thumb flex-shrink-0" style="min-width:120px;background:none;border:none;padding:0;cursor:pointer;"> <img src="https://img.youtube.com/vi/PPODqdJh2gs/mqdefault.jpg" alt="Vídeo recepção" loading="lazy" class="w-full h-full object-cover" onerror="this.style.background='#f2dfa5';this.alt='Vídeo';">
+      <div class="play-icon"><i data-lucide="play" style="width:28px;height:28px;color:#c9982a;"></i>
+      </div></button>
+    </div>
+   </div>
+  </section><!-- PACOTE 3: Pista de Dança - Jornada Sensorial -->
+  <section id="pista" class="section-dark py-20 px-4 relative overflow-hidden">
+   <!-- Ambient glow -->
+   <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full" style="background:radial-gradient(circle,rgba(139,26,43,0.08),transparent 70%);"></div>
+   <div class="max-w-5xl mx-auto relative z-10">
+    <div class="text-center mb-14">
+     <div class="inline-flex items-center gap-2 mb-4">
+      <span class="combo-badge">🔥 Mais vendido</span>
+     </div><span class="block px-4 py-1 text-gold-500 text-xs tracking-[2px] uppercase mb-4">Pacote 03</span>
+     <h2 class="font-display text-3xl md:text-5xl font-bold text-white mb-3">Jornada <span class="gold-text">Sensorial</span></h2>
+     <p class="font-elegant text-lg text-gold-300 italic max-w-xl mx-auto">A energia lá no alto do primeiro ao último minuto</p>
+    </div>
+    <div class="pkg-card featured max-w-3xl mx-auto p-8 md:p-10 mb-10" style="background:linear-gradient(135deg,#fffdf7,#fff);">
+     <div class="grid md:grid-cols-2 gap-8">
+      <div>
+       <h3 class="font-display text-xl font-semibold text-gray-900 mb-6">O pacote pode incluir</h3>
+       <div class="space-y-4">
+        <div class="checklist-item">
+         <i data-lucide="check-circle" class="checklist-icon" style="width:18px;height:18px;"></i>
+         <div><span class="text-sm font-medium text-gray-800">DJ com Sax LED + Violino LED</span><br><span class="text-xs text-gray-500">Base inclusa — visual espetacular!</span>
+         </div>
+        </div>
+        <div class="checklist-item">
+         <i data-lucide="check-circle" class="checklist-icon" style="width:18px;height:18px;"></i>
+         <div><span class="text-sm font-medium text-gray-800">Adicione Violoncelo ou Trompete</span><br><span class="text-xs text-gray-500">+R$ 700 cada</span>
+         </div>
+        </div>
+        <div class="checklist-item">
+         <i data-lucide="check-circle" class="checklist-icon" style="width:18px;height:18px;"></i>
+         <div><span class="text-sm font-medium text-gray-800">Pistola Pirotécnica</span><br><span class="text-xs text-gray-500">+R$ 150</span>
+         </div>
+        </div>
+        <div class="checklist-item">
+         <i data-lucide="check-circle" class="checklist-icon" style="width:18px;height:18px;"></i>
+         <div><span class="text-sm font-medium text-gray-800">Canhão de Pó Colorido</span><br><span class="text-xs text-gray-500">+R$ 350</span>
+         </div>
+        </div>
+        <div class="checklist-item">
+         <i data-lucide="check-circle" class="checklist-icon" style="width:18px;height:18px;"></i>
+         <div><span class="text-sm font-medium text-gray-800">Bastão de LED (10 un.)</span><br><span class="text-xs text-gray-500">+R$ 80</span>
+         </div>
+        </div>
+        <div class="checklist-item">
+         <i data-lucide="check-circle" class="checklist-icon" style="width:18px;height:18px;"></i>
+         <div><span class="text-sm font-medium text-gray-800">Bazooka de Fumaça</span><br><span class="text-xs text-gray-500">+R$ 250</span>
+         </div>
+        </div>
+        <div class="checklist-item">
+         <i data-lucide="check-circle" class="checklist-icon" style="width:18px;height:18px;"></i>
+         <div><span class="text-sm font-medium text-gray-800">Tambores de LED c/ Percussionista</span><br><span class="text-xs text-gray-500">+R$ 1.500</span>
+         </div>
+        </div>
+       </div>
+       <div class="mt-6 p-4 bg-gold-50 rounded-xl border border-gold-200">
+        <div class="flex items-start gap-2">
+         <i data-lucide="shield-check" style="width:18px;height:18px;color:#c9982a;flex-shrink:0;margin-top:2px;"></i>
+         <p class="text-xs text-gray-600"><strong class="text-gray-800">Fogo Frio:</strong> Não queima, não produz fumaça. Homologado para ambientes fechados.</p>
+        </div>
+       </div>
+      </div>
+      <div class="flex flex-col items-center justify-center text-center">
+       <div class="bg-gradient-to-br from-gray-900 to-gray-800 rounded-2xl p-8 w-full">
+        <p class="text-gold-400 text-sm uppercase tracking-widest mb-2">Investimento base</p>
+        <p class="font-display text-5xl font-bold text-white mb-1">Consulte</p>
+        <p class="text-xs text-gold-300/60 mb-6">Personalizado conforme seus extras</p><a href="#contato" class="btn-red px-8 py-4 rounded-full text-base w-full inline-flex items-center justify-center gap-2"> <i data-lucide="zap" style="width:18px;height:18px;"></i> Montar meu pacote </a>
+       </div>
+       <div class="mt-4 flex items-center gap-2 text-gold-400 text-xs">
+        <i data-lucide="info" style="width:14px;height:14px;"></i> <span>Bandas precisam de intervalos — nós não paramos!</span>
+       </div>
+      </div>
+     </div>
+    </div>
+    <div class="mb-8">
+     <h4 class="text-gold-400 text-sm uppercase tracking-widest text-center mb-6">Veja a energia em ação</h4>
+     <div class="flex gap-3 overflow-x-auto pb-4 justify-start md:justify-center" style="-webkit-overflow-scrolling:touch;">
+      <button onclick="openVideoModal('BlQH0HiQiHA')" class="video-thumb flex-shrink-0" style="min-width:120px;background:none;border:none;padding:0;cursor:pointer;"> <img src="https://img.youtube.com/vi/BlQH0HiQiHA/mqdefault.jpg" alt="Jornada Sensorial" loading="lazy" class="w-full h-full object-cover" onerror="this.style.background='linear-gradient(135deg,#1a1209,#0a0a0a)';this.alt='Vídeo';">
+       <div class="play-icon"><i data-lucide="play" style="width:28px;height:28px;color:#e2b63f;"></i>
+       </div></button> <button onclick="openVideoModal('mGEptz0K6kU')" class="video-thumb flex-shrink-0" style="min-width:120px;background:none;border:none;padding:0;cursor:pointer;"> <img src="https://img.youtube.com/vi/mGEptz0K6kU/mqdefault.jpg" alt="Jornada Sensorial" loading="lazy" class="w-full h-full object-cover" onerror="this.style.background='linear-gradient(135deg,#1a1209,#0a0a0a)';this.alt='Vídeo';">
+       <div class="play-icon"><i data-lucide="play" style="width:28px;height:28px;color:#e2b63f;"></i>
+       </div></button> <button onclick="openVideoModal('dOeSIaTFzP4')" class="video-thumb flex-shrink-0" style="min-width:120px;background:none;border:none;padding:0;cursor:pointer;"> <img src="https://img.youtube.com/vi/dOeSIaTFzP4/mqdefault.jpg" alt="Jornada Sensorial" loading="lazy" class="w-full h-full object-cover" onerror="this.style.background='linear-gradient(135deg,#1a1209,#0a0a0a)';this.alt='Vídeo';">
+       <div class="play-icon"><i data-lucide="play" style="width:28px;height:28px;color:#e2b63f;"></i>
+       </div></button> <button onclick="openVideoModal('thdNfjnU_UM')" class="video-thumb flex-shrink-0" style="min-width:120px;background:none;border:none;padding:0;cursor:pointer;"> <img src="https://img.youtube.com/vi/thdNfjnU_UM/mqdefault.jpg" alt="Jornada Sensorial" loading="lazy" class="w-full h-full object-cover" onerror="this.style.background='linear-gradient(135deg,#1a1209,#0a0a0a)';this.alt='Vídeo';">
+       <div class="play-icon"><i data-lucide="play" style="width:28px;height:28px;color:#e2b63f;"></i>
+       </div></button> <button onclick="openVideoModal('gS9Jfn-VjDk')" class="video-thumb flex-shrink-0" style="min-width:120px;background:none;border:none;padding:0;cursor:pointer;"> <img src="https://img.youtube.com/vi/gS9Jfn-VjDk/mqdefault.jpg" alt="Jornada Sensorial" loading="lazy" class="w-full h-full object-cover" onerror="this.style.background='linear-gradient(135deg,#1a1209,#0a0a0a)';this.alt='Vídeo';">
+       <div class="play-icon"><i data-lucide="play" style="width:28px;height:28px;color:#e2b63f;"></i>
+       </div></button> <button onclick="openVideoModal('DJREQKgqIc0')" class="video-thumb flex-shrink-0" style="min-width:120px;background:none;border:none;padding:0;cursor:pointer;"> <img src="https://img.youtube.com/vi/DJREQKgqIc0/mqdefault.jpg" alt="Jornada Sensorial" loading="lazy" class="w-full h-full object-cover" onerror="this.style.background='linear-gradient(135deg,#1a1209,#0a0a0a)';this.alt='Vídeo';">
+       <div class="play-icon"><i data-lucide="play" style="width:28px;height:28px;color:#e2b63f;"></i>
+       </div></button> <button onclick="openVideoModal('y6JjD_xcyq8')" class="video-thumb flex-shrink-0" style="min-width:120px;background:none;border:none;padding:0;cursor:pointer;"> <img src="https://img.youtube.com/vi/y6JjD_xcyq8/mqdefault.jpg" alt="Jornada Sensorial" loading="lazy" class="w-full h-full object-cover" onerror="this.style.background='linear-gradient(135deg,#1a1209,#0a0a0a)';this.alt='Vídeo';">
+       <div class="play-icon"><i data-lucide="play" style="width:28px;height:28px;color:#e2b63f;"></i>
+       </div></button>
+     </div>
+    </div>
+   </div>
+  </section><!-- COMBOS SECTION -->
+  <section id="combos" class="py-20 px-4 bg-white">
+   <div class="max-w-5xl mx-auto">
+    <div class="text-center mb-14">
+     <span class="combo-badge mb-4 inline-block">Economia garantida</span>
+     <h2 class="font-display text-3xl md:text-5xl font-bold text-gray-900 mb-3">Combos com <span style="color:#8B1A2B;">Desconto</span></h2>
+     <p class="font-elegant text-lg text-gray-500 italic max-w-xl mx-auto">Combine pacotes e economize no grande dia</p>
+    </div>
+    <div class="grid md:grid-cols-3 gap-6 mb-10">
+     <!-- Combo 1 -->
+     <div class="pkg-card p-6 text-center relative">
+      <span class="absolute -top-3 left-1/2 -translate-x-1/2 combo-badge">-10%</span>
+      <h3 class="font-display text-lg font-semibold text-gray-900 mt-4 mb-2">Cerimônia + Recepção</h3>
+      <p class="text-sm text-gray-500 mb-4">Pacote 01 + Pacote 02</p>
+      <p class="text-xs text-gray-500 mb-1">Desconto aplicado sobre o valor total</p>
+      <p class="font-display text-3xl font-bold price-highlight">Consulte</p><a href="#contato" class="btn-gold px-6 py-3 rounded-full text-sm mt-4 inline-block w-full">Quero este combo</a>
+     </div><!-- Combo 2 -->
+     <div class="pkg-card featured p-6 text-center relative">
+      <span class="absolute -top-3 left-1/2 -translate-x-1/2 combo-badge">-15% ⭐</span>
+      <h3 class="font-display text-lg font-semibold text-gray-900 mt-4 mb-2">Cerimônia + Pista</h3>
+      <p class="text-sm text-gray-500 mb-4">Pacote 01 + Pacote 03</p>
+      <p class="text-xs text-gray-500 mb-1">Desconto aplicado sobre o valor total</p>
+      <p class="font-display text-3xl font-bold price-highlight">Consulte</p><a href="#contato" class="btn-red px-6 py-3 rounded-full text-sm mt-4 inline-block w-full">Quero este combo</a>
+     </div><!-- Combo 3 -->
+     <div class="pkg-card p-6 text-center relative">
+      <span class="absolute -top-3 left-1/2 -translate-x-1/2 combo-badge">-20%</span>
+      <h3 class="font-display text-lg font-semibold text-gray-900 mt-4 mb-2">Completo</h3>
+      <p class="text-sm text-gray-500 mb-4">Pacote 01 + 02 + 03</p>
+      <p class="text-xs text-gray-500 mb-1">O máximo desconto para o dia perfeito</p>
+      <p class="font-display text-3xl font-bold price-highlight">Consulte</p><a href="#contato" class="btn-gold px-6 py-3 rounded-full text-sm mt-4 inline-block w-full">Quero este combo</a>
+     </div>
+    </div>
+   </div>
+  </section><!-- Social Proof -->
+  <section class="section-dark py-16 px-4">
+   <div class="max-w-4xl mx-auto text-center">
+    <h2 class="font-display text-2xl md:text-3xl font-bold text-white mb-8">Por que escolher a <span class="gold-text">Patos Casamentos</span>?</h2>
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+     <div>
+      <p class="font-display text-3xl font-bold gold-text">+1000</p>
+      <p class="text-gold-300/70 text-sm mt-1">Eventos atendidos em diferentes estados</p>
+     </div>
+     <div>
+      <p class="font-display text-3xl font-bold gold-text">100%</p>
+      <p class="text-gold-300/70 text-sm mt-1">Satisfação</p>
+     </div>
+     <div>
+      <p class="font-display text-3xl font-bold gold-text">10+</p>
+      <p class="text-gold-300/70 text-sm mt-1">Anos de experiência</p>
+     </div>
+     <div>
+      <p class="font-display text-3xl font-bold gold-text">100%</p>
+      <p class="text-gold-300/70 text-sm mt-1">Energia contínua</p>
+     </div>
+    </div>
+   </div>
+  </section><!-- CTA / Contato -->
+  <section id="contato" class="py-20 px-4 bg-white">
+   <div class="max-w-3xl mx-auto text-center">
+    <h2 class="font-display text-3xl md:text-4xl font-bold text-gray-900 mb-4">Vamos criar juntos a <span class="gold-text">trilha do seu grande dia</span>?</h2>
+    <p class="font-elegant text-lg text-gray-500 italic mb-10">Entre em contato e receba uma proposta personalizada</p>
+    <div class="grid sm:grid-cols-2 gap-4 mb-10">
+     <a href="https://api.whatsapp.com/send?phone=5531998206948" target="_blank" rel="noopener noreferrer" class="flex items-center gap-3 p-5 border border-gray-200 rounded-2xl hover:border-gold-300 hover:shadow-lg transition-all group">
+      <div class="w-12 h-12 rounded-full bg-green-50 flex items-center justify-center group-hover:bg-green-100 transition-colors">
+       <i data-lucide="message-circle" style="width:22px;height:22px;color:#25D366;"></i>
+      </div>
+      <div class="text-left">
+       <p class="font-semibold text-gray-800 text-sm">WhatsApp</p>
+       <p class="text-xs text-gray-500">(31) 99820-6948</p>
+      </div></a> <a href="https://www.instagram.com/patoscasamentos" target="_blank" rel="noopener noreferrer" class="flex items-center gap-3 p-5 border border-gray-200 rounded-2xl hover:border-gold-300 hover:shadow-lg transition-all group">
+      <div class="w-12 h-12 rounded-full bg-pink-50 flex items-center justify-center group-hover:bg-pink-100 transition-colors">
+       <i data-lucide="instagram" style="width:22px;height:22px;color:#E4405F;"></i>
+      </div>
+      <div class="text-left">
+       <p class="font-semibold text-gray-800 text-sm">Instagram</p>
+       <p class="text-xs text-gray-500">@patoscasamentos</p>
+      </div></a>
+    </div><a href="https://api.whatsapp.com/send?phone=5531998206948" target="_blank" rel="noopener noreferrer" class="btn-red px-8 py-4 rounded-full text-base mt-6 inline-flex items-center justify-center gap-2"> <i data-lucide="message-circle" style="width:18px;height:18px;"></i> Fale Conosco </a>
+   </div>
+  </section><!-- Footer -->
+  <footer class="bg-gray-900 py-10 px-4">
+   <div class="max-w-5xl mx-auto text-center">
+    <div class="flex items-center justify-center gap-2 mb-4">
+     <span class="font-display text-gold-400 text-lg font-bold tracking-wider">PATOS</span> <span class="font-elegant text-gold-300/70 text-sm italic">Casamentos</span>
+    </div>
+    <p class="text-gray-500 text-xs">© 2025 Patos Casamentos. Todos os direitos reservados.</p>
+    <p class="text-gray-600 text-xs mt-1">Proposta válida para eventos em 2026</p>
+   </div>
+  </footer><!-- Floating CTA --> <a href="#contato" class="floating-cta btn-red w-14 h-14 rounded-full flex items-center justify-center shadow-xl"> <i data-lucide="message-circle" style="width:24px;height:24px;"></i> </a>
+  <script>
+  // SDK Init
+  const defaultConfig = {
+    hero_title: 'Seu casamento merece<br><span class="gold-text">uma trilha inesquecível</span>',
+    hero_subtitle: 'Música ao vivo, tecnologia LED e momentos que vão emocionar cada convidado',
+    cta_text: 'Solicite seu orçamento',
+    background_color: '#ffffff',
+    surface_color: '#0a0a0a',
+    text_color: '#1f2937',
+    primary_action_color: '#c9982a',
+    secondary_action_color: '#8B1A2B',
+    font_family: 'Playfair Display',
+    font_size: 16
+  };
+
+  async function initApp() {
+    if (window.elementSdk) {
+      window.elementSdk.init({
+        defaultConfig,
+        onConfigChange: async (config) => {
+          const c = { ...defaultConfig, ...config };
+          document.getElementById('heroTitle').innerHTML = c.hero_title;
+          document.getElementById('heroSubtitle').textContent = c.hero_subtitle;
+          document.getElementById('ctaText').textContent = c.cta_text;
+
+          // Font
+          const font = c.font_family || defaultConfig.font_family;
+          document.querySelectorAll('.font-display').forEach(el => {
+            el.style.fontFamily = `${font}, serif`;
+          });
+
+          // Font size
+          const base = c.font_size || defaultConfig.font_size;
+          document.body.style.fontSize = base + 'px';
+        },
+        mapToCapabilities: (config) => {
+          const c = { ...defaultConfig, ...config };
+          const makeColor = (key) => ({
+            get: () => c[key] || defaultConfig[key],
+            set: (v) => { c[key] = v; window.elementSdk.setConfig({ [key]: v }); }
+          });
+          return {
+            recolorables: [
+              makeColor('background_color'),
+              makeColor('surface_color'),
+              makeColor('text_color'),
+              makeColor('primary_action_color'),
+              makeColor('secondary_action_color')
+            ],
+            borderables: [],
+            fontEditable: {
+              get: () => c.font_family || defaultConfig.font_family,
+              set: (v) => { c.font_family = v; window.elementSdk.setConfig({ font_family: v }); }
+            },
+            fontSizeable: {
+              get: () => c.font_size || defaultConfig.font_size,
+              set: (v) => { c.font_size = v; window.elementSdk.setConfig({ font_size: v }); }
+            }
+          };
+        },
+        mapToEditPanelValues: (config) => {
+          const c = { ...defaultConfig, ...config };
+          return new Map([
+            ['hero_title', c.hero_title],
+            ['hero_subtitle', c.hero_subtitle],
+            ['cta_text', c.cta_text]
+          ]);
+        }
+      });
+    }
+  }
+  initApp();
+
+  // Sticky nav scroll effect
+  window.addEventListener('scroll', () => {
+    const nav = document.getElementById('stickyNav');
+    if (window.scrollY > 100) {
+      nav.style.background = 'rgba(10,10,10,0.95)';
+      nav.style.backdropFilter = 'blur(12px)';
+      nav.style.boxShadow = '0 2px 20px rgba(0,0,0,0.3)';
+    } else {
+      nav.style.background = 'transparent';
+      nav.style.backdropFilter = 'none';
+      nav.style.boxShadow = 'none';
+    }
+  });
+
+  // Mobile menu
+  function openMobileMenu() { document.getElementById('mobileMenu').classList.add('active'); }
+  function closeMobileMenu() { document.getElementById('mobileMenu').classList.remove('active'); }
+
+  // Video Modal - Redirect to YouTube
+  function openVideoModal(videoId) {
+    window.open(`https://www.youtube.com/watch?v=${videoId}`, '_blank');
+  }
+
+  function closeVideoModal() {
+    // No longer needed
+  }
+
+  // Lucide icons
+  lucide.createIcons();
+</script>
+ <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9e4a033c64c2f1f3',t:'MTc3NDkwNDA5OS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
